@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+    database:
+        image: 'mysql:8'
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: boutique_france
+        ports:
+            # To allow the host machine to access the ports below, modify the lines below.
+            # For example, to allow the host to connect to port 3306 on the container, you would change
+            # "3306" to "3306:3306". Where the first port is exposed to the host and the second is the container port.
+            # See https://docs.docker.com/compose/compose-file/#ports for more information.
+            - '3306'
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: phpmyadmin_boutique
+        environment:
+            - PMA_ARBITRARY=1
+        restart: always
+        ports:
+            - 8080:80
+        volumes:
+            - /sessions
+            - ~/docker/phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
+
+        # server = sharefood-api-docker_database_1
+        # user = root
+        # pass = password
