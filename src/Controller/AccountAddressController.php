@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classe\Cart;
 use App\Entity\Address;
 use App\Form\AddressType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -39,7 +40,7 @@ class AccountAddressController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function add(Request $request): Response
+    public function add(Request $request, Cart $cart): Response
     {
         $address = new Address();
         $form = $this->createForm(AddressType::class, $address);
@@ -50,7 +51,14 @@ class AccountAddressController extends AbstractController
             $this->manager->persist($address);
             $this->manager->flush();
 
-            return $this->redirectToRoute('account_address');
+            // Si mon panier contient quelque chose
+            if ($cart->get()) {
+                $this->redirectToRoute('order');
+            } else {
+                return $this->redirectToRoute('account_address');
+            }
+
+
         }
 
         return $this->render('account/address_form.html.twig', [
@@ -61,6 +69,7 @@ class AccountAddressController extends AbstractController
     /**
      * @Route("/compte/modifier-adresse/{id}", name="account_address_edit")
      * @param Request $request
+     * @param $id
      * @return Response
      */
     public function edit(Request $request, $id): Response
@@ -77,7 +86,6 @@ class AccountAddressController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // Le $manager->persist n'est obligatoire que lors d'une création et pas pour une édition
             $this->manager->flush();
-
             return $this->redirectToRoute('account_address');
         }
 
