@@ -20,6 +20,7 @@ class Cart
     /**
      * Cart constructor.
      * @param SessionInterface $session
+     * @param EntityManagerInterface $manager
      */
     public function __construct(SessionInterface $session, EntityManagerInterface $manager)
     {
@@ -33,6 +34,7 @@ class Cart
      */
     public function getFull()
     {
+        // Je déclare un tableau
         $cartComplete = [];
 
         // Si mon panier contient des produits
@@ -109,7 +111,7 @@ class Cart
     }
 
     /**
-     * Permet d'incrementer la quantité deproduits dansle panier
+     * Permet d'incrementer / decrementer la quantité de produits dans le panier
      * @param $id
      * @return mixed
      */
