@@ -10,7 +10,10 @@
         <div class="col-md-6">
 
             {% set formHtml %}
-                {{ form(form) }}
+                {{ form_start(form, {action:path('order_recap')}) }}
+                    {{ form_label(form.addresses, "Choisissez votre adresse de livraison") }}
+                <a href="{{ path('account_address_add') }}">Ajouter une nouvelle adresse ?</a>
+                {{ form_end(form) }}
             {% endset %}
             {# Permet de remplacer les br injectés dans le __toString de la classe Address #}
             {{ formHtml | replace( {'[br]' : '<br/>'} ) | raw }}
