@@ -2,6 +2,12 @@
 
 {% block content %}
     <h1>Inscription</h1>
+    {% if notification %}
+        <div class="alert alert-info">
+            {{ notification }}
+        </div>
+        <hr>
+    {% endif %}
 
     {{ form_start(form) }}
     {{ form_widget(form) }}

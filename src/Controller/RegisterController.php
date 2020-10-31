@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classe\Mail;
 use App\Entity\User;
 use App\Form\RegisterType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -29,6 +30,7 @@ class RegisterController extends AbstractController
      */
     public function index(Request $request, UserPasswordEncoderInterface $encoder): Response
     {
+        $notification = null;
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
         $form->handleRequest($request);
@@ -39,11 +41,15 @@ class RegisterController extends AbstractController
             $user->setPassword($password);
             $this->manager->persist($user);
             $this->manager->flush();
+
+
+            $notification = 'Votre inscription à réussie !';
         }
 
 
         return $this->render('register/index.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'notification' => $notification
         ]);
     }
 }
