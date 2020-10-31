@@ -10,7 +10,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac2b0c2e-68df-4d9e-8445-2e5a36b27afe" name="Default Changelist" comment="" />
+    <list default="true" id="ac2b0c2e-68df-4d9e-8445-2e5a36b27afe" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/Classe/Mail.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classe/Mail.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,6 +61,7 @@
       <workItem from="1603917775178" duration="8011000" />
       <workItem from="1603962464455" duration="14728000" />
       <workItem from="1604039745181" duration="8629000" />
+      <workItem from="1604137135801" duration="145000" />
     </task>
     <servers />
   </component>
